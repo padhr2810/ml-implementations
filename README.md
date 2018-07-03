@@ -1,2 +1,2 @@
-# py-ml-implementations
-Implementations of machine learning algorithms in Python.
+# ml-implementations
+Implementations of statistical and machine learning algorithms.
