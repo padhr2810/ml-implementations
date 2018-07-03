@@ -1,0 +1,41 @@
+// implements Weirstrass's form (infinite product)
+double Gamma( double z, unsigned Nterms )
+{
+    double g = 0.577216;// Euler-Mascheroni constant
+    double retVal = z*exp(g*z);
+
+    // apply products
+    for(unsigned n=1; n<=Nterms; ++n)
+        retVal *= (1 + z/n)*exp(-z/n);
+
+    retVal = 1.0/retVal;// invert
+
+    return retVal;
+}
+
+#include<iostream>
+#include<cmath>
+//using namespace std;
+using std::cout;// better practice
+using std::endl;
+
+double PI = 3.141592654;
+
+int main(void)
+{
+    cout << "Gamma(1/2) = " << Gamma(0.5, 1000) << endl;
+    cout << "sqrt(PI) = " << sqrt(PI) << endl << endl;// checking value above
+    cout << "Gamma(1) = " << Gamma(1.0, 1000) << endl;// 1
+    cout << "Gamma(3) = " << Gamma(3.0, 1000) << endl;// 2
+    cout << "Gamma(5.1) = " << Gamma(5.1, 1000) << endl;// 24 +
+    cout << "Gamma(-10) = " << Gamma(5.1, 1000) << endl;// 24 +
+    cout << endl;
+    return 0;
+    
+    test with the built-in gamma function from <cmath>
+    std::cout << "Gamma(1/2) = " << std::tgamma(0.5) << '\n'
+              << "sqrt(PI) = " << std::sqrt(std::acos(-1)) << '\n'
+              << "Gamma(1) = " << std::tgamma(1.0) << '\n'
+              << "Gamma(3) = " << std::tgamma(3.0) << '\n'
+              << "Gamma(5.1) = " << std::tgamma(5.1) << '\n';
+}
